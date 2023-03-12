@@ -16,6 +16,16 @@
 #define STR(x) __BASIC_STR(x)
 #define __BASIC_STR(x) #x
 
+#define PROFILE_FUNCTION(function, data, time_delta)                                    \
+do                                                                                      \
+{                                                                                       \
+    clock_t time_start = std::clock();                                                  \
+    function(data);                                                                     \
+    clock_t time_end = std::clock();                                                    \
+    time_delta = (uint64_t)(time_end - time_start) / (uint64_t)(CLOCKS_PER_SEC / 1000); \
+} while (0)
+
+/*
 #define PROFILE_FUNCTION(function, data, time_delta)    \
 do                                                      \
 {                                                       \
@@ -30,6 +40,7 @@ do                                                      \
 {\
     if (((pid) = fork()) == 0) { function (data); exit(0); }\
 } while (0)
+*/
 
 /**
  * @brief

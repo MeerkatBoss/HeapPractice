@@ -44,6 +44,7 @@ static void fill_data(test_data* tdata);
         REPEAT_TEST(function, repetitions, tdata);                                              \
         fprintf(output_file, STR(function)"%zu,%zu,%lu\n",                                      \
                             test_num, sample_size, mean_time_ms);                               \
+        if (mean_time_ms >= 60*1000) break;                                                     \
     }                                                                                           \
 } while(0)
 
@@ -77,7 +78,7 @@ void run_all_tests()
 
     for (size_t i = 0; i < test_count; i++)
     {
-        if (heap_types[i] <= 2) break;
+        if (heap_types[i] <= 2) continue;
         tdata.arity = heap_types[i];
         
         RUN_TEST(tdata.arity, HeapHeapSort, tdata, seed);
