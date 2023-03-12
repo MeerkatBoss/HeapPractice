@@ -19,9 +19,9 @@
 #define PROFILE_FUNCTION(function, data, time_delta)                                    \
 do                                                                                      \
 {                                                                                       \
-    clock_t time_start = std::clock();                                                  \
+    clock_t time_start = clock();                                                  \
     function(data);                                                                     \
-    clock_t time_end = std::clock();                                                    \
+    clock_t time_end = clock();                                                    \
     time_delta = (uint64_t)(time_end - time_start) / (uint64_t)(CLOCKS_PER_SEC / 1000); \
 } while (0)
 
