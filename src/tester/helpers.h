@@ -25,7 +25,7 @@ do                                                                              
     time_delta = (uint64_t)(time_end - time_start) / (uint64_t)(CLOCKS_PER_SEC / 1000); \
 } while (0)
 
-/*
+/* Sadly, this doesn't seem to work
 #define PROFILE_FUNCTION(function, data, time_delta)    \
 do                                                      \
 {                                                       \
