@@ -21,7 +21,7 @@ CFLAGS=-D _DEBUG -ggdb3 -std=c++2a -O0 -Wall -Wextra -Weffc++\
 -pie -Wlarger-than=8192 -Wstack-usage=8192
 
 BUILDTYPE?=Debug
-TEST_CASE?=
+TEST_CASE?=heap_simple
 
 ifeq ($(BUILDTYPE), Release)
 	CFLAGS=-std=c++2a -O3 -Wall
@@ -49,7 +49,8 @@ remake: cleaner all
 
 $(OBJDIR)/tester/tester.o: $(SRCDIR)/tester/tester.cpp .FORCE
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) $(INCFLAGS) -DTEST_CASE="test_cases/$(TEST_CASE).h" -DTEST_CASE_NAME=$(TEST_CASE) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCFLAGS) -DTEST_CASE="test_cases/$(TEST_CASE).h"\
+									-DTEST_CASE_NAME=$(TEST_CASE) -c $< -o $@
 
 $(OBJDIR)/%.$(OBJS): $(SRCDIR)/%.$(SRCS)
 	@mkdir -p $(dir $@)

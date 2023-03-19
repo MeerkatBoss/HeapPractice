@@ -85,6 +85,7 @@ void run_all_tests()
     }
 
     fclose(output_file);
+    free(tdata.data);
 
 #undef INITIAL_SIZE
 #undef END_SIZE
